@@ -1,0 +1,243 @@
+/*****COLORS
+BASE BLUE:    14, 2, 194
+DARK BLUE:    5, 2, 54
+BASE ORANGE:  235, 103, 23
+BASE GREEN:   81, 189, 66
+DARK GREEN:   32, 143, 16
+
+*/
+
+
+body{
+	padding:0px;
+	margin:0px;
+	background-color:rgba(255,255,255,1);
+
+}
+
+canvas{
+	padding:0px;
+	margin:0px;
+}
+
+#creative,
+#logical{
+	display:none;
+}
+
+#loading{
+	width:100%;
+	margin-top:20%;
+	text-align:center;
+}
+
+#loading p{
+	font-size: 35px;
+	font-family:'Exo 2', Impact, Charcoal, sans-serif;
+}
+
+.container{
+	margin:0px;
+	padding:0px;
+}
+
+#creative{
+	z-index:0;
+	margin:0px;
+	padding:0px;
+}
+
+
+#story-word-bubble-container{
+	position:fixed;
+	top:0px;
+	left:0px;
+}
+
+#word-bubble, #second-word-bubble{
+	z-index:2;
+	visibility:hidden;
+	display:block;
+	border:3px solid white;
+	border-radius:15px;
+	background-color:white;
+	max-width: 300px;
+	position:absolute;
+}
+
+
+#current-text{
+	margin:10px 5px;
+	font-size:16px;
+}
+
+#stats{
+	position:absolute;
+	top:50px;
+	left:10px;
+}
+
+
+#stats .stats-list{
+	display:inline-block;
+	vertical-align:top;
+	width:19%;
+	margin:5px auto;
+	font-family:'Exo 2', Impact, Charcoal, sans-serif;
+	background-color:rgba(255,255,255,0.8);
+	border:1px solid rgba(5, 2, 54, 1);
+}
+
+#stats .stats-list h3{
+	width:100%;
+	text-align:center;
+	border-bottom:1px solid rgba(5, 2, 54, 1);
+	font-family:'Exo 2', Impact, Charcoal, sans-serif;
+	font-size:35px;
+	font-weight:normal;
+	margin:0px;
+	display:inline-block;
+}
+
+#stats .stats-list ul{
+	margin:5px;
+	padding:0px;
+}
+
+#stats .stats-list ul li{
+	list-style:none;
+	font-size:15px;
+	text-shadow:1px -1px 1px rgba(49,106,70,0.05),-1px 1px 1px rgba(49,106,70,0.05);
+	color:rgba(235, 103, 23, 1);
+}
+
+#stats .stats-list ul li sup{
+	font-size:12px;
+}
+
+#stats .stats-list ul li.gained{
+	text-shadow:none;
+	color:rgba(255,189,18,1);
+}
+
+
+
+#logical{
+	position:absolute;
+	top:0px;
+	left:65%;
+	width:30%;
+	margin-right:15%;
+	z-index:2;
+}
+
+
+#logical .logical-element{
+	position:absolute;
+	top:0px;
+	left:0px;
+	padding:0px;
+	width:100%;
+	min-width:250px;
+	z-index:10;
+	color:rgba(17,36,24,1);
+	border:rgba(5, 2, 54, 1) 1px solid;
+	background-color:rgba(255,255,255,0.8);
+}
+
+.logical-element h1{
+	width:100%;
+	text-align:center;
+	border-bottom:1px solid rgba(5, 2, 54, 1);
+	font-family:'Exo 2', Impact, Charcoal, sans-serif;
+	font-size:35px;
+	font-weight:normal;
+	display:inline-block;
+	margin:0px;
+}
+
+.logical-element h1 span{
+	display:inline-block;
+	font-size: 20px;
+}
+
+.logical-element img{
+	width:100%;
+	max-width:200px;
+	margin:0px;
+	border-bottom:1px solid rgba(5, 2, 54, 1);
+	border-right:1px solid rgba(5, 2, 54, 1);
+	display:inline-block;
+}
+
+.logical-element ul{
+	margin:10px;
+}
+
+.logical-element h4{
+	margin:0px;
+	font-size:25px;
+	line-height:1.2em;
+}
+
+.logical-element h4 span{
+	display:block;
+	font-size:14px;
+}
+
+.logical-element .description{
+	text-align:left;
+	margin:5px 10px;
+	font-size:13px;
+	line-height:1.6em;
+}
+
+.logical-element ul{
+	list-style:none;
+	padding:0px;
+}
+
+.logical-element ul li{
+	margin:0px;
+}
+
+.logical-element section{
+	text-align:left;
+	margin-left:10px;
+}
+
+.logical-element section header{
+
+}
+
+.logical-element section header h6,
+.logical-element section header h4{
+	font-size:20px;
+	line-height:1.2em;
+	margin:0px;
+}
+
+.logical-element dl dd,
+.logical-element dl dt{
+	display:block;
+	font-size:15px;
+	font-style:italic;
+}
+
+.logical-element dl dt{
+	display:none;
+}
+
+.logical-element dl dd{
+
+}
+
+#introduction{
+
+}
+
+#introduction img{
+	display:block;
+	margin:auto;
+	border-left:1px solid rgba(5, 2, 54, 1);
+}
