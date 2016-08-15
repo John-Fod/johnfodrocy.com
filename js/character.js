@@ -3,15 +3,15 @@ const DEBUG = false;
 //*************************************************************
 //The Character Class
 //*************************************************************
-//**  DESCRIPTION----------------------------------------------
-//**    This is a character that will appear on screen. It
-//**  will move its arms and legs and has a bobble head
-//**  effect.
-//**  INPUT----------------------------------------------------
-//**  canvas: A canvas element the character will be drawn on
-//**  NOTE-----------------------------------------------------
-//**    The character must be loaded with the load character
-//**  function after it is created.
+//**DESCRIPTION----------------------------------------------
+//**  This is a character that will appear on screen. It
+//**will move its arms and legs and has a bobble head
+//**effect.
+//**INPUT----------------------------------------------------
+//**canvas: A canvas element the character will be drawn on
+//**NOTE-----------------------------------------------------
+//**  The character must be loaded with the load character
+//**function after it is created.
 function Character(canvas){
 	this.canvas = canvas;
 	this.ctx = this.canvas.getContext("2d");

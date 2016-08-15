@@ -50,6 +50,19 @@ function HeadwearStory(character, headwearScript){
 	}
 
 
+	//READ
+	//*****************************************************
+	//DESCRIPTION------------------------------------------
+	//  Checks to see if the character should be wearing
+	//headwear based on their storyPos. This also updates
+	//the headwear's 'wearing' variable and manages the
+	//'curHeadwear' array.
+	//NOTE-------------------------------------------------
+	//  Before headwear is removed to the 'curHeadwear'
+	//array, its 'wearing' variables is set to 'false' and
+	//it will move off screen (via its 'update' method).
+	//The headwear should only be removed from the
+	//'curHeadwear' array once it is off screen.
 	this.read = function(){
 		//Add to the curHeadwear array
 		for(var i = 0; i < this.script.length; i++){
@@ -79,6 +92,11 @@ function HeadwearStory(character, headwearScript){
 
 
 
+	//UPDATE HEADWEAR
+	//*****************************************************
+	//DESCRIPTION------------------------------------------
+	//  Updates the position of all of the headwear in the
+	//curHeadwear array.
 	this.updateHeadwear = function(){
 		for(var i = 0; i < this.curHeadwear.length; i++){
 			this.curHeadwear[i].headwear.update();
@@ -86,6 +104,10 @@ function HeadwearStory(character, headwearScript){
 	}
 
 
+	//DRAW HEADWEAR
+	//*****************************************************
+	//DESCRIPTION------------------------------------------
+	//  Draws all of the headwear in the curHeadwear array.
 	this.drawHeadwear = function(){
 		for(var i = 0; i < this.curHeadwear.length; i++){
 			this.curHeadwear[i].headwear.draw();

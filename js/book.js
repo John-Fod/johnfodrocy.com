@@ -1,10 +1,11 @@
 //*************************************************************
 //The Book Class
 //*************************************************************
-//**  DESCRIPTION----------------------------------------------
-//**  INPUT----------------------------------------------------
-//**  floor: The y value at which the book bounces off the ground
-//**  canvas: A canvas element the character will be drawn on
+//**DESCRIPTION----------------------------------------------
+//**  This is a class for books which roll across the screen.
+//**INPUT----------------------------------------------------
+//**floor: The y value at which the book bounces off the ground
+//**canvas: A canvas element the character will be drawn on
 function Book(floor, canvas){
 	this.canvas = canvas;
 	this.ctx = this.canvas.getContext("2d");
@@ -35,17 +36,19 @@ function Book(floor, canvas){
 	//ANIMATE BOOK
 	//*********************************************************
 	//DESCRIPTION----------------------------------------------
-	//INPUT----------------------------------------------------
+	//  This function runs the update and draw functions to
+	//animate the book and make it appear to be rolling.
 	this.animate = function(){
 		this.update();
 		this.draw();
-
-		this.ctx.beginPath();
-		ctx.moveTo(0,this.floor);
-		ctx.lineTo(this.canvas.width, this.floor);
-		ctx.stroke();
 	}
 
+
+	//RESET BOOK
+	//**********************************************************
+	//DESCRIPTION-----------------------------------------------
+	//  Resets the books to their original starting positions so
+	//that the user can see the animation again.
 	this.reset = function(){
 
 		this.x = this.canvas.width + (Math.random() * (this.maxStartX - this.minStartX) + this.minStartX);
@@ -62,7 +65,9 @@ function Book(floor, canvas){
 	//UPDATE BOOK
 	//**********************************************************
 	//DESCRIPTION-----------------------------------------------
-	//INPUT-----------------------------------------------------
+	//  Moves and rotates the book. Also, if the book is below
+	//the 'floor', this function changes the direction of the
+	//book to make it appear to have bounced.
 	this.update = function(){
 		this.x += this.speedX;
 		this.y += this.speedY;
@@ -80,6 +85,11 @@ function Book(floor, canvas){
 
 	}
 
+	//DRAW BOOK
+	//***********************************************************
+	//DESCRIPTION------------------------------------------------
+	//  Draws the book at its proper position and rotation on
+	//the HTML5 canvas.
 	this.draw = function(){
 
 		this.ctx.save();
