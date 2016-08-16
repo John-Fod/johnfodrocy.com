@@ -1,19 +1,14 @@
-//Show helpful information for debugging
-const DEBUG_ANIMATION = true;
-
 //Global Variables 
 var curScrollPos = 0;
 var prevScrollPos = 0;
+//Global V
 var curSpeed = 0;
 var speedMod = 100;
 var speedDegredation = 0.99;
 
+//Set up the canvas
 var canvas = document.getElementById("story");
 var ctx = canvas.getContext("2d");
-
-var foregroundSpeed = 0.3;
-var foregroundMod = 0;
-var foregroundEdge = "NONE";
 
 var xpColor = "rgba(20,9,122,1)";
 var xpColor2 = "rgba(198,92,23,1)";
@@ -27,15 +22,13 @@ var mousePos = {
 //***************
 //Make the images
 
-//Grass
-var grass = new Image();
-grass.src = 'images/animation/grass/grass.png';
+//Set up the ground image
+var ground = new Image();
+ground.src = 'images/animation/grass/grass.png';
 
 //Set up the main character
 var char = new Character(canvas);
 char.loadCharacter(mainCharacterPositions, 'images/animation/character/main');
-
-
 var mainCharacterExperienceStory = new ExperienceStory(char, mainCharacterExperience, canvas);
 var mainCharacterDialogueStory = new DialogueStory(char, mainCharacterDialogue, "word-bubble");
 var mainCharacterGestureStory = new GestureStory(char, mainCharacterGesture, characterGestures);
@@ -44,7 +37,6 @@ var mainCharacterHeadwearStory = new HeadwearStory(char, mainCharacterHeadwear);
 
 //Set up the background animation
 var backgroundObjects = loadGroundPlaneImages(background);
-var backgroundBase = 430;
 var backgroundSpeedMod = 0.25;
 
 //Set up the middleground back animation
@@ -62,6 +54,7 @@ var foregroundObjects = loadGroundPlaneImages(foreground);
 var foregroundBase = 500;
 var foregroundSpeedMod = 1.2;
 
+//Listener to get the mouse position
 canvas.addEventListener('mousemove', function(evt) {
 	mousePos = getMousePos(canvas, evt);
 }, false);
@@ -81,6 +74,8 @@ window.onload=function(){
 	curScrollPos = $(window).scrollTop();
 
 	$(window).scroll(function(){
+
+		//Get the position and speed of the character
 		prevScrollPos = curScrollPos;
 		curScrollPos = $(window).scrollTop();
 		curSpeed = Math.abs(curScrollPos - prevScrollPos) * speedMod;
@@ -102,36 +97,30 @@ window.onload=function(){
 
 		//**********************
 		//Draw background objects
-		drawGroundPlane(backgroundObjects, backgroundSpeedMod, backgroundBase, curScrollPos, canvas);
+		drawGroundPlane(backgroundObjects, backgroundSpeedMod, curScrollPos, canvas);
 
 		//**********************
 		//Draw middleground back objects
-		drawGroundPlane(middlegroundBackObjects, middlegroundBackSpeedMod, middlegroundBackBase, curScrollPos, canvas);
+		drawGroundPlane(middlegroundBackObjects, middlegroundBackSpeedMod, curScrollPos, canvas);
 
 		//******************
 		//Draw the character
 		char.animate(curScrollPos, mousePos);
 		mainCharacterHeadwearStory.animate();
-
 		mainCharacterEventStory.animate();
 
 		//**********************
 		//Draw middleground front objects
-		drawGroundPlane(middlegroundFrontObjects, middlegroundFrontSpeedMod, middlegroundFrontBase, curScrollPos, canvas);
+		drawGroundPlane(middlegroundFrontObjects, middlegroundFrontSpeedMod, curScrollPos, canvas);
 
-		//**************
-		//Draw the grass
-		foregroundMod = curScrollPos*foregroundSpeed % grass.width;
-
-		//If we can see the end, draw more grass
-		if(foregroundMod > grass.width - canvas.width)
-			ctx.drawImage(grass, -(foregroundMod-grass.width)-1, canvas.height-grass.height);
-		ctx.drawImage(grass, -foregroundMod, canvas.height-grass.height);
+		//***************
+		//Draw the ground
+		drawGround(ground, curScrollPos, canvas);
 
 
 		//**********************
 		//Draw foreground objects
-		drawGroundPlane(foregroundObjects, foregroundSpeedMod, foregroundBase, curScrollPos, canvas);
+		drawGroundPlane(foregroundObjects, foregroundSpeedMod, curScrollPos, canvas);
 
 
 		//***********************************
@@ -140,8 +129,12 @@ window.onload=function(){
 		mainCharacterExperienceStory.animate();
 		mainCharacterDialogueStory.animate();
 
+		//*****
+		//DEBUG
+		//*****
 		//Draw the scroll location
-		ctx.fillText("Pos: " + curScrollPos + ", XP: " + char.xp, 10,canvas.height - 50);
+		if(DEBUG == true)
+			ctx.fillText("Pos: " + curScrollPos + ", XP: " + char.xp, 10,canvas.height - 50);
 	})
 
 	window.setInterval(function(){
@@ -160,12 +153,12 @@ window.onload=function(){
 
 		//**********************
 		//Draw background objects
-		drawGroundPlane(backgroundObjects, backgroundSpeedMod, backgroundBase, curScrollPos, canvas);
+		drawGroundPlane(backgroundObjects, backgroundSpeedMod, curScrollPos, canvas);
 
 
 		//**********************
 		//Draw middleground back objects
-		drawGroundPlane(middlegroundBackObjects, middlegroundBackSpeedMod, middlegroundBackBase, curScrollPos, canvas);
+		drawGroundPlane(middlegroundBackObjects, middlegroundBackSpeedMod, curScrollPos, canvas);
 
   		//Redraw the character
 		char.animate(curScrollPos, mousePos);
@@ -175,15 +168,11 @@ window.onload=function(){
 
 		//**********************
 		//Draw foreground objects
-		drawGroundPlane(middlegroundFrontObjects, middlegroundFrontSpeedMod, middlegroundFrontBase, curScrollPos, canvas);
+		drawGroundPlane(middlegroundFrontObjects, middlegroundFrontSpeedMod, curScrollPos, canvas);
 
-		//**************
-		//Draw the grass
-		foregroundMod = curScrollPos*foregroundSpeed % grass.width;
-		//If we can see the end, draw more grass
-		if(foregroundMod > grass.width - canvas.width)
-			ctx.drawImage(grass, -(foregroundMod-grass.width)-1, canvas.height-grass.height);
-		ctx.drawImage(grass, -foregroundMod, canvas.height-grass.height);
+		//***************
+		//Draw the ground
+		drawGround(ground, curScrollPos, canvas);
 
 		//Adjust the speed
 		if(curSpeed > 500)
@@ -197,11 +186,7 @@ window.onload=function(){
 
 		//**********************
 		//Draw foreground objects
-		drawGroundPlane(foregroundObjects, foregroundSpeedMod, foregroundBase, curScrollPos, canvas);
-
-		//**********************
-		//Update the word bubble
-		//giveDialogue(char, curScrollPos, mainCharacterDialogue, "word-bubble");
+		drawGroundPlane(foregroundObjects, foregroundSpeedMod, curScrollPos, canvas);
 
 		//***********************************
 		//Update the main character's stories
@@ -209,10 +194,28 @@ window.onload=function(){
 		mainCharacterExperienceStory.animate();
 		mainCharacterDialogueStory.animate();
 
+		//*****
+		//DEBUG
+		//*****
 		//Draw the scroll location
-		ctx.fillText("Pos: " + curScrollPos + ", XP: " + char.xp, 10,canvas.height - 50);
+		if(DEBUG == true)
+			ctx.fillText("Pos: " + curScrollPos + ", XP: " + char.xp, 10,canvas.height - 50);
+
 	}, 10);
 
 
 
+}
+
+
+function drawGround(groundImage, pos, canvas){
+	var ctx = canvas.getContext("2d");
+	var groundSpeed = 0.8;
+
+
+	groundMod = pos * groundSpeed % groundImage.width;
+
+	if(groundMod > groundImage.width - canvas.width)
+		ctx.drawImage(groundImage, -(groundMod-groundImage.width)-1, canvas.height-groundImage.height)
+	ctx.drawImage(groundImage, -groundMod, canvas.height-groundImage.height);
 }

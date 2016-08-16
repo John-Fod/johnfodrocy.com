@@ -1,5 +1,16 @@
+//************************************************************
+//**  EVENTS
+//**    This file holds code for specific events that are to
+//**  be used in the event story. Because of the nature of
+//**  events as all unique, events aren't a class, but just
+//**  a group of individual functions.
+//**    This file also holds the mainCharacterEvents array,
+//**  which is the array used to hold the events of the
+//**  main character.
+
+
 //**********************************************
-//LOAD ANY CHARACTERS THAT NEED TO BE USED
+//LOAD ANY ITEMS THAT NEED TO BE USED
 
 
 //Ninja
@@ -111,8 +122,18 @@ var mainCharacterEvents = [
 
 
 
+//************************************************
+//MAKE THE ACTUAL FUNCTIONS FOR INDIVIDUAL EVENTS
+//************************************************
 
-//Make the actual functions for indivudual events
+
+//CHARACTER RUNNING
+//******************************************************
+//DESCRIPTION-------------------------------------------
+//  A pre-loaded character runs accross the canvas.
+//INPUT-------------------------------------------------
+//  character: A Character object that will run.
+//  runSpeed: The speed of the character to run.
 function characterRunning(character, runSpeed){
 	var animate = true;
 
@@ -124,6 +145,15 @@ function characterRunning(character, runSpeed){
 		character.animate(null, char.head, runSpeed, 0);
 }
 
+
+//CHARACTER RUNNING RESET
+//*******************************************************
+//DESCRIPTION--------------------------------------------
+//  Puts the character back in position after it has run
+//so that the event can be experienced again by the user.
+//INPUT--------------------------------------------------
+//  character: A Character object that will run.
+//  runSpeed: The speed of the character to run.
 function characterReset(character, runSpeed){
 	var movingLeft = false
 	if(runSpeed < 0)
@@ -131,6 +161,13 @@ function characterReset(character, runSpeed){
 	character.reset(movingLeft);
 }
 
+
+//BOOK ROLLING
+//*******************************************************
+//DESCRIPTION--------------------------------------------
+//  Makes a book roll accross the screen.
+//INPUT--------------------------------------------------
+//  book: A Book object.
 function bookRolling(book){
 	var animate = true;
 	if(book.x < -200)
@@ -140,6 +177,14 @@ function bookRolling(book){
 		book.animate();
 }
 
+
+//BOOK ROLLING RESET
+//*******************************************************
+//DESCRIPTION--------------------------------------------
+//  Resets the position of a Book object so that the user
+//can experience the amazing event multiple times.
+//INPUT--------------------------------------------------
+//  book: A Book object.
 function bookReset(book){
 	book.reset();
 }

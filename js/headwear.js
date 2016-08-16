@@ -2,9 +2,12 @@
 //The Headwear Class
 //*************************************************************
 //**  DESCRIPTION----------------------------------------------
+//**    Headwear that the a character is wearing. If the
+//**  character 'takes the headwear off', then it flies off
+//**  screen. If the character 'puts the headwear on', then it
+//**  flies from offscreen and onto the head of the character.
 //**  INPUT----------------------------------------------------
-//**  character: 
-//**  canvas: A canvas element the character will be drawn on
+//**  character: The character who the headwear belongs to
 function Headwear(character){
 	this.character = character;
 
@@ -29,7 +32,8 @@ function Headwear(character){
 	//ANIMATE HEADWEAR
 	//*********************************************************
 	//DESCRIPTION----------------------------------------------
-	//INPUT----------------------------------------------------
+	//  This animates the headwear by first updating it, and
+	//then drawing it.
 	this.animate = function(){
 		this.update();
 		this.draw();
@@ -40,7 +44,13 @@ function Headwear(character){
 	//UPDATE HEADWEAR
 	//**********************************************************
 	//DESCRIPTION-----------------------------------------------
-	//INPUT-----------------------------------------------------
+	//  Updates the position of the headwear.
+	//NOTE------------------------------------------------------
+	//  This also takes care of the headwear flying off screen
+	//or on to the character's head.
+	//  This does not update the rotation of the headwear, that
+	//is handled in the draw function, as is based off the
+	//rotation of the character's head.
 	this.update = function(){
 
 		if(this.wearing == true){
@@ -71,8 +81,14 @@ function Headwear(character){
 		}
 	}
 
+	//DRAW HEADWEAR
+	//*****************************************************
+	//DESCRIPTION------------------------------------------
+	//  Draws the headwear.
+	//NOTE-------------------------------------------------
+	//  This function uses the character's head's rotation
+	//to draw the headwear at the correct angle.
 	this.draw = function(){
-
 		this.ctx.save();
 			this.ctx.translate(this.x, this.y);
 			this.ctx.rotate(this.character.head.rotation * (Math.PI/180));

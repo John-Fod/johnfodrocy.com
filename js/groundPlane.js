@@ -1,3 +1,25 @@
+//************************************************************
+//**  GROUND PLANE
+//**  This file holds some functions to draw the ground planes
+//**    as well as the arrays that hold the information for
+//**    the ground planes which are to be drawn.
+
+
+
+
+
+//LOAD GROUND PLANE IMAGES
+//*******************************************************
+//DESCRIPTION--------------------------------------------
+//  Loads the ground plane images so they are ready to go
+//as soon as they need to be drawn.
+//INPUT--------------------------------------------------
+//gArray: An array that will hold the ground planes.
+//NOTE---------------------------------------------------
+//  The position of the folder that holds all of the
+//ground plane images is hard coded.
+//  To be of any use, this function needs to take an
+//already set-up array of ground images as its argument.
 function loadGroundPlaneImages(gArray = []){
 	var i = 0;
 	for(i = 0; i < gArray.length; i++){
@@ -8,7 +30,25 @@ function loadGroundPlaneImages(gArray = []){
 }
 
 
-function drawGroundPlane(gArray, speedMod, groundBase, camPos, canvas){
+//DRAW GROUND PLANE
+//***********************************************************
+//DESCRIPTION------------------------------------------------
+//  Draws the ground plane images as they need to be drawn.
+//INPUT------------------------------------------------------
+//gArray: An array of ground plane objects with the following
+//  values
+//  **startPos: The position they will start at.
+//  **folderName: The name of the folder the artwork is in.
+//  **offsetY: Used to set the y position relative to the
+//      bottom of the canvas
+//  **image: This should be set to null, it will be loaded
+//      when the array is passed to the
+//      loadGroundPlaneImages() function.
+//speedMod: This determines how fast the ground plane will
+//  move along the screen.
+//camPos: The position of the 'camera' or scroll.
+//canvas: The canvas the ground plane is to be drawn on.
+function drawGroundPlane(gArray, speedMod, camPos, canvas){
 	var ctx = canvas.getContext("2d");
 
 	for(i = 0; i < gArray.length; i++){
@@ -20,17 +60,6 @@ function drawGroundPlane(gArray, speedMod, groundBase, camPos, canvas){
 			var imageY = canvas.height - gArray[i].image.height + gArray[i].offsetY;
 			ctx.drawImage(gArray[i].image, imageX, imageY);
 		}
-
-		/*
-		if(
-			camPos > gArray[i].startPos && 
-			-(gArray[i].image.width) < canvas.width - speedMod * (camPos - gArray[i].startPos)
-		){
-			var imageX = canvas.width - speedMod * (camPos - gArray[i].startPos);
-			var imageY = canvas.height - gArray[i].image.height + gArray[i].offsetY;
-			ctx.drawImage(gArray[i].image, imageX, imageY);
-		}
-		*/
 	}
 }
 
