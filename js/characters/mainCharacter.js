@@ -115,23 +115,38 @@ var mainCharacterDialogue = [
 		text : "I've taught English to people of all ages and backgrounds. I got to meet some really cool people and learn a lot about Japan."
 	},
 	{
-		startPos : 7000,
-		endPos : 7650,
-		text : "I've taught English to people of all ages and backgrounds. I got to meet some really cool people and learn a lot about Japan."
+		startPos : 6000,
+		endPos : 6750,
+		text : "I learned a lot while teaching, especially about working with a team, leadership and communication."
 	},
 	{
-		startPos : 8500,
-		endPos : 9200,
+		startPos : 7500,
+		endPos : 8200,
 		text : "But after a few years of teaching I got restless and wanted a new challenge, something that could help me create. That's why I took up programming."
 	},
 	{
-		startPos : 10300,
-		endPos : 11000,
+		startPos : 8201,
+		endPos : 9200,
 		text : "I started with the basics, HTML, CSS and Javascript. Then I moved on to PHP and object oriented programming."
 	},
+  {
+    startPos : 9401,
+    endPos : 10200,
+    text : "I experimented with different technologies like Ruby on Rails, Unity 3D and Google App Engine."
+  },
+  {
+    startPos : 10801,
+    endPos : 11200,
+    text : "Finally, I decided to enroll in Oregon State University to get a degree in Computer Science."
+  },
+  {
+    startPos : 12201,
+    endPos : 13200,
+    text : "I graduated with a GPA of 3.87 and a deeper knowledge of software that I am eager to put to good use."
+  },
 	{
-		startPos : 15000,
-		endPos : 20000,
+		startPos : 15201,
+		endPos : 22201,
 		text : "That's the Michigan State Capital building. I worked in the Michigan State Senate while I was going to college for my International Relations degree."
 	}
 ];
