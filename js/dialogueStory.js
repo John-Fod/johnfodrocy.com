@@ -20,8 +20,8 @@ function DialogueStory(character, dialogueScript, div){
 	this.character = character;
 
 	this.bubbleDiv = $("#" + div);
-	this.bubbleOffsetX = 30;
-	this.bubbleOffsetY = 60;
+	this.bubbleOffsetX = 10;
+	this.bubbleOffsetY = 90;
 	this.curText = null;
 
 
@@ -93,9 +93,9 @@ function DialogueStory(character, dialogueScript, div){
 
 		//Update the CSS for the bubble
 		this.bubbleDiv.find('p').text(this.curText);
+		var translate = `translate(${bubbleDisplayLeft}px,${bubbleDisplayTop}px)`;
 		this.bubbleDiv.css({
-			top : bubbleDisplayTop + "px",
-			left : bubbleDisplayLeft + "px"
+			transform : translate
 		})
 		this.bubbleDiv.css({visibility : "visible"});
 	}
